@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+
+<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-primary" role="alert">
+  <p th:text="${session.message.content}"></p>
+  
+  <!--   <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+
+ <th:block th:inline="text"> [[${#session.removeAttribute('message')}]]</th:block>
+ -->    
+  
+  </div> 
+
+<h1>Register here !!!</h1>
+<form novalidate="novalidate" action="" th:action="@{/do_register}" method="post" th:Object="${userr}">
+
+
+<div class="mb-3">
+
+  <label for="exampleFormControlInput1" class="form-label">Your name</label>
+  <input type="text"  name="name" id="name" placeholder="your name" th:classappend="${#fields.hasErrors('name')}" th:Object="${userr.name}">
+	  
+	<!--<div class="invalid-feedback" th:each="e":${#fields.errors("name")} th:text="${e}"></div>  -->
+</div>  
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="text"  id="email" name="email" placeholder="name@example.com" th:Object="${userr.email}">  
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">your password</label>
+  <input type="password"  id="password" name="password" placeholder="password" th:Object="${userr.password}">
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" >about yourself</label>
+  <textarea  id="about" name="about" rows="3" th:Object="${userr.about}"></textarea>
+</div>
+<div class="mb-3">
+  <input type="checkbox" id="aggrement" name="aggrement" />
+  <label for="exampleFormControlTextarea1" class="form-label">terms and condition</label>
+</div>
+
+
+<button type="submit">Submit</button>
+<button type="reset">reset</button>
+</form>
+</section>
+
+</body>
+</html>
